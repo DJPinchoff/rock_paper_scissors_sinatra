@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Rock, Paper, Scissors</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/rps.css" />
+  </head>
+  <body>
+    <header>
+      <h1> Rock, Paper, Scissors</h1>
+      <% if session[:message] %>
+        <p class="message"><%= session.delete(:message) %></p>
+      <% end %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+  </body>
+</html>

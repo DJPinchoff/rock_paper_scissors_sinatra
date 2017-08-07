@@ -1,0 +1,27 @@
+<table>
+  <tr>
+    <td><h2>Player Choice:</h2></td>
+    <td><img src="/<%= "#{@user_choice}" %>.jpg"></td>
+    <td><h2><%= "#{human_wins}" %> Wins</h3></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><h2>VS</h2></td>
+    <td>
+      <% if match_won? %>
+        <form method="post" action="/reset">
+          <input type="submit" value="Reset wins?"/>
+        </form>
+      <% else %>
+        <form method="get" action="/user_choice">
+          <input type="submit" value="Play again?"/>
+        </form>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td><h2>Computer Choice:</h2></td>
+    <td><img src="/<%= "#{@comp_choice}" %>.jpg"></td>
+    <td><h2><%= "#{computer_wins}" %> Wins</h3></td>
+  </tr>
+</table>
