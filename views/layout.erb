@@ -8,7 +8,7 @@
   <body>
     <header>
       <h1>Rock, Paper, Scissors</h1>
-      <h3>First to 5 wins the match!</h3>
+      <h3>First to 3 out of 5 wins the match!</h3>
       <% if session[:message] %>
         <p class="message"><%= session.delete(:message) %></p>
       <% end %>

@@ -17,7 +17,7 @@ helpers do
   end
 
   def match_won?
-    session[:human].to_i >= 5 || session[:computer].to_i >= 5
+    session[:human].to_i == 3 || session[:computer].to_i == 3
   end
 end
 
