@@ -74,28 +74,32 @@ def increment_winner(winner)
 end
 
 def winning_message(winner, user, comp)
+  phrases = ["rock crushes scissors!", "scissors cuts paper!",
+             "paper covers rock!"]
   if winner == :tie
-    "It was a tie!"
+    "It's a tie!"
+  elsif phrases[0].include?(user) && phrases[0].include?(comp)
+    phrases[0].capitalize
+  elsif phrases[1].include?(user) && phrases[1].include?(comp)
+    phrases[1].capitalize
   else
-    if user == "rock" && comp == "scissors" ||
-       user == "scissors" && comp == "rock"
-      "Rock crushes scissors!"
-    elsif user == "scissors" && comp == "paper" ||
-          user == "paper" && comp == "scissors"
-      "Scissors cuts paper!"
-    else
-      "Paper covers rock!"
-    end
+    phrases[2].capitalize
   end
 end
 
 def match_won_message(winner)
   return if winner == :tie
   if winner == :human
-    "You won the match. CONGRATULATIONS!!"
+    "You win the match. CONGRATULATIONS!!"
   else
-    "The computer won the match. GAME OVER!!"
+    "Computer wins the match. GAME OVER!!"
   end
+end
+
+def reset
+  session[:human] = "0"
+  session[:computer] = "0"
+  session[:message] = "Scores have been reset."
 end
 
 get "/" do
@@ -107,13 +111,14 @@ get "/user_choice" do
 end
 
 get "/:user_choice" do
+  reset if match_won?
   @user_choice = params[:user_choice]
   @comp_choice = computer_choice
   @winner = detect_winner(@user_choice, @comp_choice)
   increment_winner(@winner)
   session[:message] = if match_won?
                         winning_message(@winner, @user_choice, @comp_choice) +
-                        " " + match_won_message(@winner)
+                          ' ' + match_won_message(@winner)
                       else
                         winning_message(@winner, @user_choice, @comp_choice)
                       end
@@ -121,8 +126,6 @@ get "/:user_choice" do
 end
 
 post "/reset" do
-  session[:human] = "0"
-  session[:computer] = "0"
-  session[:message] = "Scores have been reset."
+  reset
   redirect "/user_choice"
 end
