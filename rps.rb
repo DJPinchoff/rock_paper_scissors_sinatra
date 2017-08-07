@@ -1,5 +1,5 @@
 require "sinatra"
-require "sinatra/reloader"
+require "sinatra/reloader" if development?
 require "tilt/erubis"
 
 configure do
@@ -92,9 +92,9 @@ end
 def match_won_message(winner)
   return if winner == :tie
   if winner == :human
-    "You have 5 wins and won the match - CONGRATULATIONS!!"
+    "You won the match: CONGRATULATIONS!!"
   else
-    "The computer has 5 wins - GAME OVER!!"
+    "The computer won the match - GAME OVER!!"
   end
 end
 
