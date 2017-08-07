@@ -92,9 +92,9 @@ end
 def match_won_message(winner)
   return if winner == :tie
   if winner == :human
-    "You won the match: CONGRATULATIONS!!"
+    "You won the match. CONGRATULATIONS!!"
   else
-    "The computer won the match - GAME OVER!!"
+    "The computer won the match. GAME OVER!!"
   end
 end
 
