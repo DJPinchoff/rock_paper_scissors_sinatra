@@ -1,4 +1,4 @@
-# rock_paper_scissors_sinatra
+# rock_paper_scissors
 
 Check out this project deployed to Heroku: 
 - https://pinchoff-sinatra-rps.herokuapp.com/
